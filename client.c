@@ -3,8 +3,9 @@
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+#include "loginFunct.h"
 
-#define PORT 8010
+#define PORT 8001
 
 void display_menu() {
     printf("\n|| Banking Management System ||\n\n");
@@ -16,6 +17,23 @@ void display_menu() {
     printf("5. Exit\n\n");
     printf("Choose your role (1-5): ");
 }
+
+// void login(int client_socket, int role) {
+//     char user_id[50], password[50];
+//     char login_buffer[1024];
+
+//     printf("Enter User ID: ");
+//     scanf("%s", user_id);
+//     printf("Enter Password: ");
+//     scanf("%s", password);
+
+//     send(client_socket, &role, sizeof(role), 0);
+//     send(client_socket, user_id, sizeof(user_id), 0);
+//     send(client_socket, password, sizeof(password), 0);
+
+//     read(client_socket, login_buffer, sizeof(login_buffer));
+//     printf("Server: %s\n", login_buffer);
+// }
 
 int main() {
     int choice;
@@ -55,11 +73,7 @@ int main() {
             continue; 
         }
 
-        send(client_socket, &choice, sizeof(choice), 0);
-
-        char buffer[1024] = {0};
-        read(client_socket, buffer, sizeof(buffer));
-        printf("Server: %s\n", buffer);
+        login(client_socket, choice);
     }
 
     close(client_socket);
