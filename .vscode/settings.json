@@ -4,6 +4,16 @@
         "unistd.h": "c",
         "stdio.h": "c",
         "pthread.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "inet.h": "c",
+        "loginfunct.h": "c",
+        "customerfunct.h": "c",
+        "adminfunct.h": "c",
+        "managerfunct.h": "c",
+        "employeefunct.h": "c",
+        "customerfuncts.h": "c",
+        "types.h": "c",
+        "fcntl.h": "c",
+        "loginfuncts.h": "c"
     }
 }

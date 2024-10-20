@@ -3,9 +3,13 @@
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-#include "loginFunct.h"
+#include "clientUtils/loginFunct.h"
+#include "clientUtils/customerFunct.h"
+#include "clientUtils/employeeFunct.h"
+#include "clientUtils/managerFunct.h"
+#include "clientUtils/adminFunct.h"
 
-#define PORT 8001
+#define PORT 8032
 
 void display_menu() {
     printf("\n|| Banking Management System ||\n\n");
@@ -17,23 +21,6 @@ void display_menu() {
     printf("5. Exit\n\n");
     printf("Choose your role (1-5): ");
 }
-
-// void login(int client_socket, int role) {
-//     char user_id[50], password[50];
-//     char login_buffer[1024];
-
-//     printf("Enter User ID: ");
-//     scanf("%s", user_id);
-//     printf("Enter Password: ");
-//     scanf("%s", password);
-
-//     send(client_socket, &role, sizeof(role), 0);
-//     send(client_socket, user_id, sizeof(user_id), 0);
-//     send(client_socket, password, sizeof(password), 0);
-
-//     read(client_socket, login_buffer, sizeof(login_buffer));
-//     printf("Server: %s\n", login_buffer);
-// }
 
 int main() {
     int choice;
@@ -73,7 +60,25 @@ int main() {
             continue; 
         }
 
-        login(client_socket, choice);
+        if(login(client_socket, choice)){
+            switch(choice){
+                case 1:
+                    customer(client_socket);
+                    break;
+                case 2:
+                    employee(client_socket);
+                    break;
+                case 3:
+                    manager(client_socket);
+                    break;
+                case 4:
+                    admin();
+                    break;
+            }
+        }
+        else{
+            printf("Login failed! Invalid User ID or Password.");
+        }
     }
 
     close(client_socket);

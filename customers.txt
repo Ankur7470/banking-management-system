@@ -1,0 +1,6 @@
+user1 pass1 2010.00
+user2 newPass2 1965.00
+user75 pass75 64.00
+user56 pass56 56.00
+user35 pass35 35.00
+newUser6 pass67 4.00
